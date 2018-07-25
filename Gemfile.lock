@@ -7,6 +7,7 @@ GEM
     erubi (1.7.1)
     ffi (1.9.25)
     formatador (0.2.5)
+    forme (1.8.0)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -79,6 +80,7 @@ PLATFORMS
 
 DEPENDENCIES
   erubi
+  forme
   guard-bundler
   guard-rspec
   pg

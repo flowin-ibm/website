@@ -1,0 +1,22 @@
+<h1>All Hotspots</h1>
+
+<table class="hotspot" border="1">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @hotspots.each do |hotspot| %>
+    <tr>
+      <td> <%= hotspot.name %> </td>
+      <td> <%= hotspot.latitude %> </td>
+      <td> <%= hotspot.longitude %> </td>
+      <td> <%= hotspot.status %> </td>
+    </tr>
+  <% end %>
+  <tbody>
+</table>

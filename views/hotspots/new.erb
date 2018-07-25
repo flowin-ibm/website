@@ -1,0 +1,31 @@
+<script>
+function success(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  console.log("You are at " + latitude + ", " + longitude);
+  document.getElementById("latitude").value = latitude;
+  document.getElementById("longitude").value = longitude;
+}
+
+function error(msg) {
+  console.error(msg);
+}
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  error('Geolocation not supported or allowed');
+}
+</script>
+
+<% form(@image,
+        :inputs_wrapper => :fieldset,
+        action: '/hotspots',
+        method: 'post',
+        ) do |f| %>
+  <p>Name:<br/><%== f.input(:name, size: 50) %><p/>
+  <p>Latitude:<br/><%== f.input(:latitude, type: 'text', size: 15, id: 'latitude') %><p/>
+  <p>Longitude:<br/><%== f.input(:longitude, type: 'text', size: 15, id: 'longitude') %><p/>
+  <p><input type="file" name="image" accept="image/*"></p>
+  <p><%== f.button(value: 'Create') %></p>
+<% end %>

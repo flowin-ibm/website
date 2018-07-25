@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'erubi'
+gem 'forme'
 gem 'pg'
 gem 'puma'
 gem 'rake'
