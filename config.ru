@@ -1,8 +1,7 @@
 require 'roda'
 require 'forme'
 
-Hotspot = Struct.new(:name, :latitude, :longitude, :status)
-# Hotspot = Struct.new(:name, :latitude, :longitude, :status, keyword_init: true)
+Hotspot = Struct.new(:name, :latitude, :longitude, :status, keyword_init: true)
 
 class App < Roda
   use Rack::Session::Cookie, secret: 'call4c0de'
@@ -23,10 +22,8 @@ class App < Roda
       # Set a variable that is available for all routes in /hotspots
       @hotspots = [
         # Use http://m.osmtools.de/ to find the latlon of a map point
-        Hotspot.new('Rohrwiesensee', 48.640005862001, 9.1181137561754, 'unknown'),
-        Hotspot.new('Ritter', 48.638229914597, 9.1214477419861, 'good'),
-      #   Hotspot.new(name: 'Rohrwiesensee', latitude: 48.640005862001, longitude: 9.1181137561754, status: 'unknown'),
-      #   Hotspot.new(name: 'Ritter', latitude: 48.638229914597, longitude: 9.1214477419861, status: 'good'),
+        Hotspot.new(name: 'Rohrwiesensee', latitude: 48.640005862001, longitude: 9.1181137561754, status: 'unknown'),
+        Hotspot.new(name: 'Ritter', latitude: 48.638229914597, longitude: 9.1214477419861, status: 'good'),
       ]
 
       # just /hotspots
