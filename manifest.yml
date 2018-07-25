@@ -1,0 +1,4 @@
+---
+applications:
+- name: flowin
+  memory: 128M
