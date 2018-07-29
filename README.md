@@ -8,7 +8,7 @@ $ rerun --no-notify bundle exec rackup
 ```
 
 
-# trouble shooting `gem install pg`
+# trouble shooting
 
 In case `bundle install` has problems to install the pg gem you need to install postgresql first.
 
