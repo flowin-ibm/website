@@ -15,5 +15,3 @@ In case `bundle install` has problems to install the pg gem you need to install 
 ```sh
 $ brew install postgresql
 ```
-
-test
