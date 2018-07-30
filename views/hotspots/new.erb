@@ -1,10 +1,41 @@
+<style>
+  #latitude {
+    -webkit-animation: pulse 0.5s infinite ease-in-out;
+    -moz-animation: pulse 0.5s infinite ease-in-out;
+    animation: pulse 0.5s infinite ease-in-out;
+  }
+
+  #longitude {
+    -webkit-animation: pulse 0.5s infinite ease-in-out;
+    -moz-animation: pulse 0.5s infinite ease-in-out;
+    animation: pulse 0.5s infinite ease-in-out;
+  }
+
+  @-webkit-keyframes pulse {
+    0% { background-color: #aaa; }
+    100% { background-color: #fff; }
+  }
+
+  @-moz-keyframes pulse {
+    0% { background-color: #aaa; }
+    100% { background-color: #fff; }
+  }
+
+  @keyframes pulse {
+    0% { background-color: #aaa; }
+    100% { background-color: #fff; }
+  }
+</style>
+
 <script>
 function success(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
-  console.log("You are at " + latitude + ", " + longitude);
-  document.getElementById("latitude").value = latitude;
-  document.getElementById("longitude").value = longitude;
+  var latitude = document.getElementById("latitude");
+  latitude.value = position.coords.latitude;
+  latitude.style.animation = "unset";
+
+  var longitude = document.getElementById("longitude");
+  longitude.value = position.coords.longitude;
+  longitude.style.animation = "unset";
 }
 
 function error(msg) {
@@ -18,14 +49,31 @@ if (navigator.geolocation) {
 }
 </script>
 
+<table>
 <% form(@image,
         :inputs_wrapper => :fieldset,
         action: '/hotspots',
         method: 'post',
         ) do |f| %>
-  <p>Name:<br/><%== f.input(:name, size: 50) %><p/>
-  <p>Latitude:<br/><%== f.input(:latitude, type: 'text', size: 15, id: 'latitude') %><p/>
-  <p>Longitude:<br/><%== f.input(:longitude, type: 'text', size: 15, id: 'longitude') %><p/>
-  <p><input type="file" name="image" accept="image/*"></p>
-  <p><%== f.button(value: 'Create') %></p>
+  <tr>
+    <td>Name:</td>
+    <td><%== f.input(:name, size: 50) %></td>
+  </tr>
+  <tr>
+    <td>Latitude:</td>
+    <td><%== f.input(:latitude, type: 'text', size: 15, id: 'latitude') %></td>
+  </tr>
+  <tr>
+    <td>Longitude:</td>
+    <td><%== f.input(:longitude, type: 'text', size: 15, id: 'longitude') %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><input type="file" name="image" accept="image/*"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%== f.button(value: 'Create') %></td>
+  </tr>
 <% end %>
+</table>
