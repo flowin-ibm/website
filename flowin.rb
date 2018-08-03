@@ -1,5 +1,7 @@
 require 'roda'
 require 'forme'
+require 'rest-client'
+require 'json'
 
 Hotspot = Struct.new(:name, :latitude, :longitude, :status, keyword_init: true)
 
@@ -19,12 +21,19 @@ class App < Roda
 
     # All routes starting with /hotspots
     r.on 'hotspots' do
+
+      # Get an array of hotspots from the backend
+      resp = RestClient.get('http://hotsp-backend.eu-gb.mybluemix.net/api/hotspots')
+      resp = JSON.parse(resp)
+      puts "Response:" + JSON.pretty_generate(resp)
+      
       # Set a variable that is available for all routes in /hotspots
-      @hotspots = [
+      @hotspots = []
+
+      resp.each do |hotsp|
         # Use http://m.osmtools.de/ to find the latlon of a map point
-        Hotspot.new(name: 'Rohrwiesensee', latitude: 48.640005862001, longitude: 9.1181137561754, status: 'unknown'),
-        Hotspot.new(name: 'Ritter', latitude: 48.638229914597, longitude: 9.1214477419861, status: 'good'),
-      ]
+        @hotspots.push( Hotspot.new(name: hotsp["name"], latitude: hotsp["latitude"], longitude: hotsp["longitude"], status: hotsp["status"]) )
+      end
 
       # just /hotspots
       r.on do

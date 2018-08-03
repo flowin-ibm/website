@@ -9,6 +9,8 @@ gem 'puma'
 gem 'rake'
 gem 'roda'
 gem 'tilt'
+gem 'rest-client'
+gem 'json'
 
 group 'development' do
   gem 'guard-bundler', require: false
