@@ -25,7 +25,7 @@ class App < Roda
       # Get an array of hotspots from the backend
       resp = RestClient.get('http://hotsp-backend.eu-gb.mybluemix.net/api/hotspots')
       resp = JSON.parse(resp)
-      puts "Response:" + JSON.pretty_generate(resp)
+      #puts "Response:" + JSON.pretty_generate(resp)
       
       # Set a variable that is available for all routes in /hotspots
       @hotspots = []
