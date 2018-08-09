@@ -1,0 +1,42 @@
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+          integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+          crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+            integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+            crossorigin=""></script>
+
+<% %i(success warning error).each do |level| %>
+  <% if flash[level] %>
+    <aside class="<%= level %>"><%= flash[level] %></aside>
+  <% end %>
+<% end %>
+
+<div id="mapid" style="height: 1024px;"></div>
+
+<script>
+    var lat = 48.630
+    var long = 9.152
+    var mymap = L.map('mapid').setView([lat, long], 16);
+
+    L.marker([lat - 0.0001, long - 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot");
+    L.marker([lat + 0.001, long - 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot as well");
+    L.marker([lat + 0.001, long + 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot too");
+    L.marker([lat - 0.001, long + 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot, and I know it");
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+        maxZoom: 19,
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+                     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        id: 'mapbox.streets'
+    }).addTo(mymap);
+    var currentPosition = L.marker([lat, long]).addTo(mymap);
+    currentPosition.bindPopup("<b>You are here!</b>")
+    var circle = L.circle([lat, long], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.1,
+            radius: 500
+        }).addTo(mymap);
+</script>
+

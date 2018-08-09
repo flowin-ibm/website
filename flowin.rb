@@ -26,7 +26,7 @@ class App < Roda
       resp = RestClient.get('http://hotsp-backend.eu-gb.mybluemix.net/api/hotspots')
       resp = JSON.parse(resp)
       #puts "Response:" + JSON.pretty_generate(resp)
-      
+
       # Set a variable that is available for all routes in /hotspots
       @hotspots = []
 
@@ -43,9 +43,11 @@ class App < Roda
           view 'hotspots/new'
         end
 
+        #GET /hotspots/map-hotspots
+
         # GET /hotspots
-        r.get do
-          view 'hotspots/list'
+        r.get 'map' do
+          view 'hotspots/map'
         end
 
         # POST /hotspots
@@ -56,6 +58,7 @@ class App < Roda
         end
       end
     end
+
     # /hello branch
     r.on "hello" do
         # Set variable for all routes in /hello branch
