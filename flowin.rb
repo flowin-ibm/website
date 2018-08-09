@@ -40,14 +40,14 @@ class App < Roda
         # GET /hotspots/new
         r.get 'new' do
           @hotspot = Hotspot.new
-          view 'hotspots/new'
+          view("hotspots/new")
         end
 
         #GET /hotspots/map-hotspots
 
         # GET /hotspots
         r.get 'map' do
-          view 'hotspots/map'
+          view("hotspots/map")
         end
 
         # POST /hotspots
