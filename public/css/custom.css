@@ -2,10 +2,11 @@ html, body {
     height: 100%
 }
 
-#mapid {
+#mapid-disabled {
+    /* TODO [JE]: make the map view responsive in map.erb */
     width: 100%;
     height: 80%;
-    background-color: yellow;
+    background-color: green;
 }
 
 .navigation {
