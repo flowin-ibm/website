@@ -11,6 +11,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="../js/navbar.js"></script>
+    <script src="../js/cookiebanner.min.js"></script>
 
 </head>
 
@@ -24,10 +25,10 @@
       <nav>
         <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
         <ul class="nav-list">
-          <li><a href="/">Home</a></li>
           <li><a href="/hotspots/map">Explore Hotspots</a></li>
           <li><a href="/hotspots/new">Add Hotspot</a></li>
           <li><a href="/hotspots">My Hotspot</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
       </nav>
     </div>
@@ -37,6 +38,13 @@
   <article>
     <%== yield %>
   </article>
+
+  <script type="text/javascript">
+    var options = { message: "We use cookies to improve your browsing experience.", moreinfo: "/cookie-guide" };
+    var cb = new Cookiebanner(options); cb.run();
+  </script>
+
 </body>
+
 
 </html>

@@ -19,6 +19,14 @@ class App < Roda
       view :home
     end
 
+    r.get "about" do
+      view("about")
+    end
+
+    r.get "cookie-guide" do
+      view("cookie-guide")
+    end
+
     # All routes starting with /hotspots
     r.on 'hotspots' do
 
