@@ -44,7 +44,12 @@ class App < Roda
       end
 
       # just /hotspots
+      # GET /hotspots
       r.on do
+        r.get "list" do
+          view("hotspots/list")
+        end
+
         # GET /hotspots/new
         r.get 'new' do
           @hotspot = Hotspot.new
@@ -52,8 +57,7 @@ class App < Roda
         end
 
         #GET /hotspots/map-hotspots
-
-        # GET /hotspots
+        # GET /hotspots/map
         r.get 'map' do
           view("hotspots/map")
         end
@@ -64,8 +68,7 @@ class App < Roda
           flash[:success] = "Thank you for updating this hotspot!"
           r.redirect
         end
-      end
+      end # //
     end
-
   end
 end
