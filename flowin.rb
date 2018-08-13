@@ -43,9 +43,13 @@ class App < Roda
         @hotspots.push( Hotspot.new(name: hotsp["name"], latitude: hotsp["latitude"], longitude: hotsp["longitude"], status: hotsp["status"]) )
       end
 
-      # just /hotspots
       # GET /hotspots
       r.on do
+        # r.root do               # natch only '/hotspots/'
+        r.get ["", true]   do      # match '/hotspots' AND '/hotspots/'
+          view("hotspots/map")
+        end
+
         r.get "list" do
           view("hotspots/list")
         end
@@ -69,6 +73,10 @@ class App < Roda
           r.redirect
         end
       end # //
-    end
+    end # hotspots
   end
+
+#  def view_method
+#    'foo'
+#  end
 end
