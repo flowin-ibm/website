@@ -9,22 +9,69 @@ if [ -z "$1" ]; then
 fi
 
 echo "*** Flowing acceptance tests ***"
+return_value=0
 
 # Is the site available ?
-echo "#A01 Test connectivity %> curl" $1"/"
 curl -s $1/ &> /dev/null
 if [ 0 == $? ]; then
-    echo "#A01 SUCCESS connecting to server."
+    echo -e "#A01 Connecting to server. [ ok ]"
 else
-    echo "#A01 ERROR connecting to server.(" $? ")"
+    echo -e "#A01 Connecting to server. [ FAILED ] (" $? ")" 
+    exit 2
 fi
 
-# Does the site present the 'Flowin' page
-echo "#A02 Test content of / %> curl" $1"/ |grep -i flowin"
+# Does the site present the 'Flowin' page (content check)
 curl -s $1/ |grep -i flowin &> /dev/null
 if [ 0 == $? ]; then
-    echo "#A02 SUCCESS receiving flowin root page."
+    echo -e "#C01 Receiving flowin root page. [ ok ]"
 else
-    echo "#A02 ERROR receiving flowin root page.(" $? ")"
+    echo -e "#C01 Receiving flowin root page. [ FAILED ] (" $? ")"
+    return_value=1
 fi
 
+# Does the site present the '/about' page
+curl -s $1/about |grep -i about &> /dev/null
+if [ 0 == $? ]; then
+    echo -e "#C02 Receiving flowin about page. [ ok ]"
+else
+    echo -e "#C02 Receiving flowin about page. [ FAILED ] (" $? ")"
+    return_value=1
+fi
+
+# Does the site present the '/hotspots' page
+curl -s $1/hotspots |grep -i hotspots &> /dev/null
+if [ 0 == $? ]; then
+    echo -e "#C03 Receiving hotspots page. [ ok ]"
+else
+    echo -e "#C03 Receiving hotspots page. [ FAILED ] (" $? ")"
+    return_value=1
+fi
+
+# Does the site present the '/hotspots/map' page
+curl -s $1/hotspots/map |grep -i OpenStreetMap &> /dev/null
+if [ 0 == $? ]; then
+    echo -e "#C04 Receiving hotspots/map page. [ ok ]"
+else
+    echo -e "#C04 Receiving hotspots/map page. [ FAILED ] (" $? ")"
+    return_value=1
+fi
+
+# Does the site present the '/hotspots/list' page
+curl -s $1/hotspots/list |grep -i hotspots &> /dev/null
+if [ 0 == $? ]; then
+    echo -e "#C05 Receiving hotspots/list page. [ ok ]"
+else
+    echo -e "#C05 Receiving hotspots/list page. [ FAILED ] (" $? ")"
+    return_value=1
+fi
+
+# Does the site present the '/hotspots/new' page
+curl -s $1/hotspots/new |grep -i Latitude &> /dev/null
+if [ 0 == $? ]; then
+    echo -e "#C06 Receiving hotspots/new page. [ ok ]"
+else
+    echo -e "#C06 Receiving hotspots/new page. [ FAILED ] (" $? ")"
+    return_value=1
+fi
+
+exit $return_value
