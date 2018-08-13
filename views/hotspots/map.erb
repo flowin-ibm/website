@@ -11,12 +11,12 @@
   <% end %>
 <% end %>
 
-<div id="mapid" style="height: 600px;"></div>
+<div id="mapid"></div>
 
 <script>
     var lat = 48.630
     var long = 9.152
-    var mymap = L.map('mapid').setView([lat, long], 16);
+    var mymap = L.map('mapid').setView([lat, long], 15);
 
     L.marker([lat - 0.0001, long - 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot");
     L.marker([lat + 0.001, long - 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot as well");
@@ -30,13 +30,14 @@
                      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'
     }).addTo(mymap);
+    
     var currentPosition = L.marker([lat, long]).addTo(mymap);
     currentPosition.bindPopup("<b>You are here!</b>")
     var circle = L.circle([lat, long], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.1,
-            radius: 500
+            radius: 200
         }).addTo(mymap);
 </script>
 

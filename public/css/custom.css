@@ -9,6 +9,25 @@ html, body {
     background-color: green;
 }
 
+#mapid {
+  height: 400px;
+  background-color: green;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .navigation {
   height: 70px;
   background: #262626;
@@ -102,6 +121,19 @@ nav ul li a:visited:hover {
   .nav-list {
     display: block !important;
   }
+
+  #mapid {
+    height: 600px;
+    background-color: green;
+  }
+}
+
+/* Bigger than 1024 */
+@media screen and (min-width: 1024px) {
+  #mapid {
+    height: 900px;
+    background-color: green;
+  }
 }
 
 #nav-toggle {
@@ -152,7 +184,7 @@ nav ul li a:visited:hover {
 }
 
 article {
-  max-width: 1000px;
+  max-width: 1900px;
   margin: 0 auto;
   padding: 10px;
 }
