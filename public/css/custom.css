@@ -1,13 +1,3 @@
-html, body {
-    height: 100%
-}
-
-#mapid-disabled {
-    /* TODO [JE]: make the map view responsive in map.erb */
-    width: 100%;
-    height: 80%;
-    background-color: green;
-}
 
 #mapid {
   height: 400px;
@@ -17,19 +7,20 @@ html, body {
 .button {
   background-color: #4CAF50; /* Green */
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   color: white;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
   margin: 4px 2px;
   cursor: pointer;
 }
 
 .navigation {
-  height: 70px;
+  height: 40px;
+  font-size: 16px;
   background: #262626;
 }
 
@@ -42,9 +33,9 @@ html, body {
   position: absolute;
   padding-left: 20px;
   float: left;
-  line-height: 70px;
+  line-height: 40px;
   /* text-transform: uppercase; */
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 .brand a,
@@ -71,8 +62,8 @@ nav ul li {
 nav ul li a,
 nav ul li a:visited {
   display: block;
-  padding: 0 20px;
-  line-height: 70px;
+  padding: 0 10px;
+  line-height: 40px;
   background: #262626;
   color: #ffffff;
   text-decoration: none;
@@ -83,16 +74,63 @@ nav ul li a:visited:hover {
   background: #2581DC;
   color: #ffffff;
 }
-/* Mobile navigation */
 
+/* Mobile navigation */
 .nav-mobile {
   display: none;
   position: absolute;
   top: 0;
   right: 0;
   background: #262626;
-  height: 70px;
+  height: 30px;
   width: 70px;
+}
+
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 8px;
+  cursor: pointer;
+  padding: 10px 25px 16px 0px;
+}
+
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 3px;
+  width: 25px;
+  background: #ffffff;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+
+#nav-toggle span:before {
+  top: -10px;
+}
+
+#nav-toggle span:after {
+  bottom: -10px;
+}
+
+#nav-toggle.active span {
+  background-color: transparent;
+}
+
+#nav-toggle.active span:before,
+#nav-toggle.active span:after {
+  top: 0;
+}
+
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
 }
 
 /* Bigger than 800 */
@@ -126,6 +164,33 @@ nav ul li a:visited:hover {
     height: 600px;
     background-color: green;
   }
+
+  .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .navigation {
+    height: 50px;
+    font-size: 16px;
+  }
+
+  .brand {
+    position: absolute;
+    padding-left: 20px;
+    float: left;
+    line-height: 50px;
+    /* text-transform: uppercase; */
+    font-size: 1.4em;
+  }
 }
 
 /* Bigger than 1024 */
@@ -134,53 +199,6 @@ nav ul li a:visited:hover {
     height: 900px;
     background-color: green;
   }
-}
-
-#nav-toggle {
-  position: absolute;
-  left: 18px;
-  top: 22px;
-  cursor: pointer;
-  padding: 10px 35px 16px 0px;
-}
-
-#nav-toggle span,
-#nav-toggle span:before,
-#nav-toggle span:after {
-  cursor: pointer;
-  border-radius: 1px;
-  height: 5px;
-  width: 35px;
-  background: #ffffff;
-  position: absolute;
-  display: block;
-  content: '';
-  transition: all 300ms ease-in-out;
-}
-
-#nav-toggle span:before {
-  top: -10px;
-}
-
-#nav-toggle span:after {
-  bottom: -10px;
-}
-
-#nav-toggle.active span {
-  background-color: transparent;
-}
-
-#nav-toggle.active span:before,
-#nav-toggle.active span:after {
-  top: 0;
-}
-
-#nav-toggle.active span:before {
-  transform: rotate(45deg);
-}
-
-#nav-toggle.active span:after {
-  transform: rotate(-45deg);
 }
 
 article {
