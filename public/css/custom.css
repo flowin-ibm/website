@@ -13,7 +13,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
+  font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
 }
@@ -82,8 +82,8 @@ nav ul li a:visited:hover {
   top: 0;
   right: 0;
   background: #262626;
-  height: 30px;
-  width: 70px;
+  height: 40px;
+  width: 60px;
 }
 
 #nav-toggle {
@@ -109,11 +109,11 @@ nav ul li a:visited:hover {
 }
 
 #nav-toggle span:before {
-  top: -10px;
+  top: -8px;
 }
 
 #nav-toggle span:after {
-  bottom: -10px;
+  bottom: -8px;
 }
 
 #nav-toggle.active span {
