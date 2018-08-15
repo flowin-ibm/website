@@ -133,14 +133,14 @@ nav ul li a:visited:hover {
   transform: rotate(-45deg);
 }
 
-/* Bigger than 800 */
+/* Smaller than 800 */
 @media only screen and (max-width: 800px) {
   .nav-mobile {
     display: block;
   }
   nav {
     width: 100%;
-    padding: 70px 0 15px;
+    padding: 0px 0 0px;
   }
   nav ul {
     display: none;
