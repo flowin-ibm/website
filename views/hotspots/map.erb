@@ -19,6 +19,34 @@
 <script>
     var lat = 48.630
     var long = 9.152
+
+  function success(position) {
+    lat = position.coords.latitude;
+    long = position.coords.longitude;
+    error("setting view with lat: "+lat+" long: "+long);
+    mymap.setView([lat, long], 15)
+    
+    var currentPosition = L.marker([lat, long]).addTo(mymap);
+    currentPosition.bindPopup("<b>You are here!</b>")
+    var circle = L.circle([lat, long], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.1,
+            radius: 200
+        }).addTo(mymap);
+  }
+
+  function error(msg) {
+    console.error(msg);
+  }
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(success, error);
+  } else {
+    error('Geolocation not supported or allowed');
+  }
+
+    error("setting view with lat: "+lat+" long: "+long);
     var mymap = L.map('mapid').setView([lat, long], 15);
 
     L.marker([lat - 0.0001, long - 0.001], { color: "green" }).addTo(mymap).bindPopup("I am a hotspot");
@@ -33,14 +61,6 @@
                      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         id: 'mapbox.streets'
     }).addTo(mymap);
-    
-    var currentPosition = L.marker([lat, long]).addTo(mymap);
-    currentPosition.bindPopup("<b>You are here!</b>")
-    var circle = L.circle([lat, long], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.1,
-            radius: 200
-        }).addTo(mymap);
+
 </script>
 
