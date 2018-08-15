@@ -14,6 +14,23 @@ class App < Roda
   plugin :static, ['/js', '/css']
 
   route do |r|
+    # Set a default position in case location data is omitted
+    @mylatitude = 48.630
+    @mylongitude = 9.152
+
+    # Get an array of hotspots from the backend
+    resp = RestClient.get('http://hotsp-backend.eu-gb.mybluemix.net/api/hotspots')
+    resp = JSON.parse(resp)
+    #puts "Response:" + JSON.pretty_generate(resp)
+
+    # Set a variable that is available for all routes in /hotspots
+    @hotspots = []
+
+    resp.each do |hotsp|
+      # Use http://m.osmtools.de/ to find the latlon of a map point
+      @hotspots.push( Hotspot.new(name: hotsp["name"], latitude: hotsp["latitude"], longitude: hotsp["longitude"], status: hotsp["status"]) )
+    end
+
     # GET / request
     r.root do
       view :home
@@ -29,19 +46,6 @@ class App < Roda
 
     # All routes starting with /hotspots
     r.on 'hotspots' do
-
-      # Get an array of hotspots from the backend
-      resp = RestClient.get('http://hotsp-backend.eu-gb.mybluemix.net/api/hotspots')
-      resp = JSON.parse(resp)
-      #puts "Response:" + JSON.pretty_generate(resp)
-
-      # Set a variable that is available for all routes in /hotspots
-      @hotspots = []
-
-      resp.each do |hotsp|
-        # Use http://m.osmtools.de/ to find the latlon of a map point
-        @hotspots.push( Hotspot.new(name: hotsp["name"], latitude: hotsp["latitude"], longitude: hotsp["longitude"], status: hotsp["status"]) )
-      end
 
       # GET /hotspots
       r.on do
